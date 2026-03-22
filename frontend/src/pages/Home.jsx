@@ -5,6 +5,29 @@ import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { HiOutlineDocumentText } from "react-icons/hi";
 
 function Home() {
+
+    // ✅ MUST be inside component
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state?.section) {
+            const section = document.getElementById(location.state.section);
+
+            if (section) {
+                setTimeout(() => {
+                    section.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+            }
+        }
+    }, [location]);
+
+    const scrollToSection = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <section id="home" className="fade-in" style={{ paddingTop: "80px" }}>
             <div style={styles.heroWrapper}>
@@ -23,8 +46,6 @@ function Home() {
                             <button
                                 style={styles.primaryBtn}
                                 onClick={() => scrollToSection("projects")}
-                                onMouseEnter={(e) => (e.target.style.opacity = "0.8")}
-                                onMouseLeave={(e) => (e.target.style.opacity = "1")}
                             >
                                 View Projects
                             </button>
@@ -32,93 +53,30 @@ function Home() {
                             <button
                                 style={styles.secondaryBtn}
                                 onClick={() => scrollToSection("contact")}
-                                onMouseEnter={(e) => {
-                                    e.target.style.backgroundColor = "#00adb5";
-                                    e.target.style.color = "#fff";
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.target.style.backgroundColor = "transparent";
-                                    e.target.style.color = "#00adb5";
-                                }}
                             >
                                 Contact Me
                             </button>
-
-
                         </div>
 
                         <div style={styles.divider}></div>
 
                         <div style={styles.socials}>
-
-                            <a
-                                href="https://linkedin.com/in/sriswasthik"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={styles.iconBtn}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.backgroundColor = "#00adb5";
-                                    e.currentTarget.style.color = "#fff";
-                                    e.currentTarget.style.transform = "translateY(-3px)";
-                                }}
-
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.backgroundColor = "#111";
-                                    e.currentTarget.style.color = "#fff";
-                                    e.currentTarget.style.transform = "translateY(0)";
-                                }}
-                            >
+                            <a href="https://linkedin.com/in/sriswasthik" target="_blank" rel="noopener noreferrer" style={styles.iconBtn}>
                                 <FaLinkedin />
                             </a>
 
-                            <a
-                                href="https://github.com/sriswasthik"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={styles.iconBtn}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.backgroundColor = "#00adb5";
-                                    e.currentTarget.style.color = "#fff";
-                                    e.currentTarget.style.transform = "translateY(-3px)";
-                                }}
-
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.backgroundColor = "#111";
-                                    e.currentTarget.style.color = "#fff";
-                                    e.currentTarget.style.transform = "translateY(0)";
-                                }}
-                            >
+                            <a href="https://github.com/sriswasthik" target="_blank" rel="noopener noreferrer" style={styles.iconBtn}>
                                 <FaGithub />
                             </a>
 
-                            <a
-                                href="/resume.pdf"
-                                target="_blank"
-                                style={styles.iconBtn}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.backgroundColor = "#00adb5";
-                                    e.currentTarget.style.color = "#fff";
-                                    e.currentTarget.style.transform = "translateY(-3px)";
-                                }}
-
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.backgroundColor = "#111";
-                                    e.currentTarget.style.color = "#fff";
-                                    e.currentTarget.style.transform = "translateY(0)";
-                                }}
-                            >
+                            <a href="/resume.pdf" target="_blank" style={styles.iconBtn}>
                                 <HiOutlineDocumentText />
                             </a>
-
                         </div>
                     </div>
 
                     <div style={styles.right}>
-                        <img
-                            src="/profile.png"
-                            alt="profile"
-                            style={styles.image}
-                        />
+                        <img src="/profile.png" alt="profile" style={styles.image} />
                     </div>
 
                 </div>
@@ -126,25 +84,6 @@ function Home() {
         </section>
     );
 }
-
-const location = useLocation();
-
-useEffect(() => {
-  if (location.state?.section) {
-    const section = document.getElementById(location.state.section);
-
-    if (section) {
-      setTimeout(() => {
-        section.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    }
-  }
-}, [location]);
-
-const scrollToSection = (id) => {
-    const section = document.getElementById(id);
-    section.scrollIntoView({ behavior: "smooth" });
-};
 
 const styles = {
     hero: {
@@ -163,7 +102,6 @@ const styles = {
         backdropFilter: "blur(10px)",
         border: "1px solid rgba(255,255,255,0.05)",
     },
-
     right: {
         flex: "1 1 300px",
         display: "flex",
@@ -186,6 +124,7 @@ const styles = {
         marginTop: "20px",
         display: "flex",
         gap: "15px",
+        flexWrap: "wrap",
     },
     primaryBtn: {
         padding: "12px 24px",
@@ -194,8 +133,6 @@ const styles = {
         color: "#fff",
         cursor: "pointer",
         borderRadius: "8px",
-        fontWeight: "500",
-        transition: "0.3s",
     },
     secondaryBtn: {
         padding: "10px 20px",
@@ -208,17 +145,14 @@ const styles = {
     image: {
         width: "100%",
         maxWidth: "320px",
-        height: "auto",
         borderRadius: "16px",
         boxShadow: "0 20px 80px rgba(0, 173, 181, 0.25)",
     },
-
     socials: {
         marginTop: "25px",
         display: "flex",
         gap: "15px",
     },
-
     iconBtn: {
         width: "45px",
         height: "45px",
@@ -230,40 +164,22 @@ const styles = {
         backgroundColor: "#111",
         fontSize: "20px",
         color: "#fff",
-        transition: "0.3s",
         cursor: "pointer",
     },
-
     heroWrapper: {
         background: "radial-gradient(circle at 70% 30%, rgba(0,173,181,0.15), transparent 60%)",
     },
-
     title: {
         fontSize: "clamp(28px, 5vw, 48px)",
         lineHeight: "1.2",
         fontWeight: "600",
     },
-
     divider: {
         marginTop: "25px",
         height: "1px",
         width: "60px",
         backgroundColor: "#00adb5",
         opacity: 0.4,
-    },
-
-    buttons: {
-        marginTop: "20px",
-        display: "flex",
-        gap: "15px",
-        flexWrap: "wrap",
-    },
-
-    buttons: {
-        marginTop: "20px",
-        display: "flex",
-        gap: "15px",
-        flexWrap: "wrap",
     },
 };
 

@@ -17,8 +17,8 @@ app.get("/api/projects", (req, res) => {
       github: "https://github.com/sriswasthik/invoice-generator"
     },
     {
-      title: "Healthcare Dashboard",
-      description: "AI-powered dashboard for managing appointments and patient data.",
+      title: "-----------------------",
+      description: "---------------------------------------------",
       github: "https://github.com/sriswasthik/healthcare-dashboard"
     },
     {
