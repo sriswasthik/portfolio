@@ -6,6 +6,8 @@ require("dotenv").config();
 const app = express();
 
 
+
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -28,6 +30,8 @@ app.get("/api/projects", (req, res) => {
     }
   ]);
 });
+
+
 
 app.post("/api/contact", (req, res) => {
     const { name, email, message } = req.body;
