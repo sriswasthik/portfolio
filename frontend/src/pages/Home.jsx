@@ -33,13 +33,29 @@ function Home() {
             <div style={styles.heroWrapper}>
                 <div className="container" style={styles.hero}>
 
-                    <div style={styles.leftCard}>
-                        <h1 style={styles.title}>
+                    <div style={{ ...styles.leftCard, animation: "fadeUp 1s ease" }}>
+                        {/* <h1 style={styles.title}>
                             Hi, I'm <span style={styles.highlight}>Sri Swasthik</span>
                         </h1>
 
                         <p style={styles.subtitle}>
                             UI Designer & Full Stack Developer crafting clean and functional digital experiences.
+                        </p> */}
+
+                        <h1 style={{ fontSize: "48px", fontWeight: "700" }}>
+                            Sri Swasthik
+                        </h1>
+
+                        <h2 style={{
+                            fontWeight: "400",
+                            marginTop: "10px",
+                            color: "#00adb5"
+                        }}>
+                            UI Designer & Full Stack Developer
+                        </h2>
+
+                        <p style={{ opacity: 0.8 }}>
+                            Building minimal, scalable digital products with strong backend systems.
                         </p>
 
                         <div style={styles.buttons}>
@@ -75,12 +91,45 @@ function Home() {
                         </div>
                     </div>
 
-                    <div style={styles.right}>
-                        <img src="/profile.png" alt="profile" style={styles.image} />
-                    </div>
+                    {/* <div style={styles.right}>
+                        <img src="/profile.png" alt="profile" style={styles.image} /> 
+                    </div> */}
+
+                    {/* <div style={styles.left}>
+                        <h1>
+                            Sri Swasthik
+                        </h1>
+
+                        <h2 style={styles.role}>
+                            UI Designer • Full Stack Developer
+                        </h2>
+
+                        <p style={styles.subtitle}>
+                            Designing clean, scalable digital experiences with functional backend systems.
+                        </p>
+                    </div> */}
 
                 </div>
             </div>
+
+            <section className="what-i-do">
+                <h2>What I Do</h2>
+
+                <div className="grid">
+                    <div className="card">
+                        <gradient-icon name="design-tool"></gradient-icon>
+                        <h3>UI Design</h3>
+                    </div>
+                    <div className="card">
+                        <gradient-icon name="frontend"></gradient-icon>
+                        <h3>Frontend Development</h3>
+                    </div>
+                    <div className="card">
+                        <gradient-icon name="backend"></gradient-icon>
+                        <h3>Backend Integration</h3>
+                    </div>
+                </div>
+            </section>
         </section>
     );
 }
@@ -102,12 +151,12 @@ const styles = {
         backdropFilter: "blur(10px)",
         border: "1px solid rgba(255,255,255,0.05)",
     },
-    right: {
-        flex: "1 1 300px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-end",
-    },
+    // right: {
+    //     flex: "1 1 300px",
+    //     display: "flex",
+    //     justifyContent: "center",
+    //     alignItems: "flex-end",
+    // },
     highlight: {
         background: "linear-gradient(90deg, #00adb5, #00ffcc)",
         WebkitBackgroundClip: "text",

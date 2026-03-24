@@ -1,5 +1,5 @@
-import novus from "../assets/Novus24.jpg";
 import uiuxst from "../assets/UIUXst.jpg";
+import novus from "../assets/Novus24.jpg";
 // import gfg from "../assets/GFGWorkshop.jpg";
 import GFGWorkshop from "../assets/GFGWorkshop.jpeg";
 

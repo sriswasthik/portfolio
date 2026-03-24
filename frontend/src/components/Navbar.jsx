@@ -109,7 +109,7 @@ const styles = {
         top: 0,
         width: "100%",
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",   // ✅ added
         padding: "20px 40px",
@@ -122,7 +122,7 @@ const styles = {
         top: 0,
         width: "100%",
         display: "flex",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",   // ✅ added
         padding: "15px 40px",

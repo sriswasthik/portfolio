@@ -8,6 +8,10 @@ import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
 import Gallery from "./pages/Gallery";
 import Cursor from "./components/Cursor";
+import Education from "./components/Education";
+import Admin from "./pages/Admin";
+
+
 
 import useScrollReveal from "./hooks/useScrollReveal";
 
@@ -20,6 +24,7 @@ function MainPage() {
       <About />
       <Projects />
       <Skills />
+      <Education />
       <Contact />
     </>
   );
@@ -34,6 +39,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </>
   );

@@ -4,25 +4,20 @@ function Projects() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch("https://portfolio-xda6.onrender.com/api/projects")
+    // fetch("https://portfolio-xda6.onrender.com/api/projects")
+    fetch("http://localhost:5000/api/projects")
       .then((res) => res.json())
       .then((data) => setProjects(data))
       .catch((err) => console.error("Error fetching projects:", err));
   }, []);
 
-  // ✅ Safe open function (fixes blank page issue)
+  // ✅ Filter out dummy projects
+  const validProjects = projects.filter(
+    (p) => p.title && !p.title.includes("-")
+  );
+
   const openGitHub = (url) => {
-    if (!url) {
-      alert("No GitHub link available");
-      return;
-    }
-
-    // ensure valid URL
-    if (!/^https?:\/\//.test(url)) {
-      alert("Invalid GitHub link");
-      return;
-    }
-
+    if (!url || !/^https?:\/\//.test(url)) return;
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
@@ -30,28 +25,58 @@ function Projects() {
     <section id="projects" className="fade-in">
       <div className="container">
 
+        {/* ✅ Heading */}
+        <h2 style={styles.heading}>Projects</h2>
+
+        {/* ✅ Subtitle */}
+        <p style={styles.subtitle}>
+          Selected work showcasing my UI design and full stack development skills
+        </p>
+
         <div style={styles.grid}>
-          {projects.map((project, index) => (
+          {validProjects.map((project, index) => (
             <div
               key={index}
               style={styles.card}
               onClick={() => openGitHub(project.github)}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-5px)";
+                e.currentTarget.style.transform = "translateY(-8px)";
                 e.currentTarget.style.borderColor = "#00adb5";
+                e.currentTarget.style.boxShadow =
+                  "0 10px 30px rgba(0,173,181,0.15)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0)";
                 e.currentTarget.style.borderColor = "#222";
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
-              <h3>{project.title}</h3>
+
+              {/* <img
+                src={project.image}
+                alt={project.title}
+                style={{
+                  width: "100%",
+                  height: "180px",
+                  objectFit: "cover",
+                  borderRadius: "10px",
+                  marginBottom: "10px"
+                }}
+              /> */}
+
+              {/* Title */}
+              <h3 style={styles.title}>{project.title}</h3>
+
+              {/* Description */}
               <p style={styles.desc}>{project.description}</p>
 
-              {/* ✅ clickable hint */}
-              <p style={styles.link}>
-                {project.github ? "View on GitHub" : "No link available"}
-              </p>
+              {/* Footer */}
+              <div style={styles.footer}>
+                <span style={styles.link}>
+                  {project.github ? "View Project" : "No link"}
+                </span>
+              </div>
+
             </div>
           ))}
         </div>
@@ -62,30 +87,55 @@ function Projects() {
 }
 
 const styles = {
+  heading: {
+    fontSize: "32px",
+    marginBottom: "10px",
+  },
+
+  subtitle: {
+    color: "#aaa",
+    marginBottom: "30px",
+    maxWidth: "500px",
+    lineHeight: "1.6",
+  },
+
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-    gap: "20px",
-    marginTop: "20px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: "25px",
   },
 
   card: {
-    padding: "20px",
+    padding: "22px",
     border: "1px solid #222",
-    borderRadius: "12px",
-    backgroundColor: "#111",
+    borderRadius: "16px",
+    background: "rgba(255,255,255,0.02)",
+    backdropFilter: "blur(10px)",
     transition: "0.3s",
     cursor: "pointer",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    minHeight: "180px",
+  },
+
+  title: {
+    fontSize: "18px",
+    fontWeight: "500",
   },
 
   desc: {
     color: "#aaa",
     marginTop: "10px",
     lineHeight: "1.6",
+    fontSize: "14px",
+  },
+
+  footer: {
+    marginTop: "15px",
   },
 
   link: {
-    marginTop: "12px",
     color: "#00adb5",
     fontSize: "14px",
   },

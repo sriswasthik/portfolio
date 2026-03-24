@@ -2,13 +2,13 @@ function About() {
   return (
     <section id="about" className="fade-in">
       <div className="container" style={styles.wrapper}>
-        
+
         {/* Title */}
         <h2>About Me</h2>
 
         {/* Content */}
         <div style={styles.content}>
-          
+
           {/* Left */}
           <div style={styles.left}>
             <p style={styles.text}>
@@ -72,10 +72,11 @@ const styles = {
     marginBottom: "15px",
   },
   card: {
-    padding: "15px",
-    border: "1px solid #222",
-    borderRadius: "8px",
-    backgroundColor: "#111",
+    padding: "20px",
+    borderRadius: "12px",
+    background: "rgba(255,255,255,0.02)",
+    backdropFilter: "blur(8px)",
+    border: "1px solid rgba(255,255,255,0.05)"
   },
 };
 
