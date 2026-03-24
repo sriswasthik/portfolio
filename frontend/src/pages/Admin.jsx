@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function Admin() {
-    const API = "http://localhost:5000/api/projects"; // ⚠️ change after deploy
+    const API = "https://portfolio-xda6.onrender.com/api/projects"; // ⚠️ change after deploy
 
     const [projects, setProjects] = useState([]);
     const [form, setForm] = useState({

@@ -4,8 +4,8 @@ function Projects() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    // fetch("https://portfolio-xda6.onrender.com/api/projects")
-    fetch("http://localhost:5000/api/projects")
+    fetch("https://portfolio-xda6.onrender.com/api/projects")
+    // fetch("http://localhost:5000/api/projects")
       .then((res) => res.json())
       .then((data) => setProjects(data))
       .catch((err) => console.error("Error fetching projects:", err));
