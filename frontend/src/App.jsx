@@ -10,6 +10,7 @@ import Gallery from "./pages/Gallery";
 import Cursor from "./components/Cursor";
 import Education from "./components/Education";
 import Admin from "./pages/Admin";
+import Login from "./pages/Login";
 
 
 
@@ -40,6 +41,8 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/login" element={<Login />} />
+        {/* <Route path="/admin" element={<Admin />} /> */}
       </Routes>
     </>
   );

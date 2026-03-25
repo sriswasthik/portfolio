@@ -1,7 +1,12 @@
+// if (localStorage.getItem("isAdmin") !== "true") {
+//     window.location.href = "/login";
+// }
+
 import { useEffect, useState } from "react";
 
 function Admin() {
     const API = "https://portfolio-xda6.onrender.com/api/projects"; // ⚠️ change after deploy
+    // const API = "http://localhost:5000/api/projects"; // ⚠️ change after deploy
 
     const [projects, setProjects] = useState([]);
     const [form, setForm] = useState({
@@ -118,7 +123,7 @@ function Admin() {
                         }
                     />
 
-                    
+
 
                     <button type="submit" style={styles.button}>
                         {loading ? "Adding..." : "Add Project"}
@@ -154,6 +159,21 @@ function Admin() {
                         </div>
                     ))}
                 </div>
+                <button
+                    style={styles.logout}
+                    onClick={() => {
+                        localStorage.removeItem("isAdmin");
+                        window.location.href = "/login";
+                    }}
+                    onMouseEnter={(e) => {
+                        e.target.style.background = "#ff4d4d";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.target.style.background = "transparent";
+                    }}
+                >
+                    Logout
+                </button>
 
             </div>
         </section>
@@ -242,6 +262,19 @@ const styles = {
         cursor: "pointer",
         color: "#fff",
     },
+
+    logout: {
+        position: "absolute",
+        top: "70px",
+        right: "40px",
+        padding: "8px 16px",
+        border: "1px solid #ff4d4d",
+        borderRadius: "20px",
+        color: "#ff4d4d",
+        background: "transparent",
+        cursor: "pointer",
+        transition: "0.3s",
+    }
 };
 
 export default Admin;
