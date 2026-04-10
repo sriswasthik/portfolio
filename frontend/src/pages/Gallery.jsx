@@ -2,8 +2,8 @@ import uiuxst from "../assets/UIUXst.jpg";
 import novus from "../assets/Novus24.jpg";
 // import gfg from "../assets/GFGWorkshop.jpg";
 import GFGWorkshop from "../assets/GFGWorkshop.jpeg";
-import IITH from "../assets/IITH.jpg";
-import HackFusion from "../assets/HackFusion.jpg";
+import IITH from "../assets/IITH.jpeg";
+import HackFusion from "../assets/HackFusion.jpeg";
 
 function Gallery() {
   const images = [
