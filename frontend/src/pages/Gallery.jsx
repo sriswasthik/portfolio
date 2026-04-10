@@ -2,12 +2,16 @@ import uiuxst from "../assets/UIUXst.jpg";
 import novus from "../assets/Novus24.jpg";
 // import gfg from "../assets/GFGWorkshop.jpg";
 import GFGWorkshop from "../assets/GFGWorkshop.jpeg";
+import IITH from "../assets/IITH.jpg";
+import HackFusion from "../assets/HackFusion.jpg";
 
 function Gallery() {
   const images = [
     { src: novus, title: "NOVUS'24 Hackathon @MRDU" },
     { src: uiuxst, title: "UI/UX Workshop @StudentTribe" },
     { src: GFGWorkshop, title: "GeeksForGeeks Workshop" },
+    { src: IITH, title: "Codeathon @IITH" },
+    { src: HackFusion, title: "HackFusion @JNTUH" },
   ];
 
   return (
