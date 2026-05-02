@@ -278,14 +278,14 @@ function HeroIcon({ children, href }) {
                 opacity: 1,
             }}
             transition={{
-                duration: 0.5,
+                duration: 0.2,
                 // repeat: Infinity,
                 ease: "easeInOut",
             }}
             whileHover={{
-                scale: 1.3,
-                rotate: 10,
-                boxShadow: "0 0 25px rgba(0,173,181,0.7)",
+                scale: 1,
+                rotate: 0,
+                boxShadow: "0 0 25px rgba(0, 172, 181, 0.23)",
             }}
             whileTap={{ scale: 0.9 }}
         >
