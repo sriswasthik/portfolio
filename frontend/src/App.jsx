@@ -1,5 +1,11 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Suspense, lazy } from "react";
+
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+} from "framer-motion";
 
 import Navbar from "./components/Navbar";
 import Cursor from "./components/Cursor";
@@ -8,7 +14,7 @@ import Education from "./components/Education";
 import useScrollReveal from "./hooks/useScrollReveal";
 import useLenis from "./hooks/useLenis";
 
-// Lazy load pages (performance optimization)
+// Lazy load pages
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Projects = lazy(() => import("./pages/Projects"));
@@ -34,27 +40,58 @@ function MainPage() {
 }
 
 function App() {
-  useLenis(); // smooth scroll
+  useLenis();
+
+  const location = useLocation();
+  const { scrollYProgress } = useScroll();
 
   return (
     <>
+      {/* SCROLL PROGRESS BAR */}
+      <motion.div
+        style={{
+          scaleX: scrollYProgress,
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "3px",
+          background: "#00adb5",
+          transformOrigin: "0%",
+          zIndex: 9999,
+        }}
+      />
+
       <Navbar />
       <Cursor />
 
-      {/* Suspense for lazy loading */}
+      {/* PAGE LOADER */}
       <Suspense
         fallback={
-          <div style={{ color: "white", textAlign: "center", marginTop: "20%" }}>
+          <div
+            style={{
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              background: "#0f0f0f",
+              color: "#00adb5",
+              fontSize: "18px",
+            }}
+          >
             Loading...
           </div>
         }
       >
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+        {/* ROUTE ANIMATIONS */}
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </AnimatePresence>
       </Suspense>
     </>
   );
