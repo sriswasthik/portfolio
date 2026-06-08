@@ -188,7 +188,7 @@ function Projects() {
         </motion.div>
 
         {/* SOCIAL ICONS */}
-        <motion.div
+        {/* <motion.div
           style={styles.socials}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -204,7 +204,7 @@ function Projects() {
           <IconBtn href="/resume.pdf">
             <HiOutlineDocumentText />
           </IconBtn>
-        </motion.div>
+        </motion.div> */}
 
         {/* LOADING */}
         {loading ? (

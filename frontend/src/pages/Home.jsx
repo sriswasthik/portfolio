@@ -256,7 +256,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
-import { FaLinkedin, FaGithub, FaMedium } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaMedium, FaX } from "react-icons/fa";
 import { HiOutlineDocumentText } from "react-icons/hi";
 
 import { motion } from "framer-motion";
@@ -388,6 +388,11 @@ function Home() {
                             <HeroIcon href="/resume.pdf">
                                 <HiOutlineDocumentText />
                             </HeroIcon>
+
+                            <HeroIcon href="https://x.com/PadmaSwasthik">
+                                <X />
+                            </HeroIcon>
+                            
 
                             {/* ✅ NEW MEDIUM ICON */}
                         </motion.div>
