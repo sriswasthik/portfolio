@@ -5,5 +5,16 @@
     "description": "Full stack invoice generator with PDF export and backend integration",
     "github": "https://github.com/sriswasthik/invoice-generator",
     "image": "https://craftmypdf.com/wp-content/uploads/2025/06/invoice-type-1.png"
+  },
+
+  
+  {
+    "id": 1774364432365,
+    "title": "Sandocal Roofing",
+    "description": "Sandoval Roofing is a professional client-side business website built for a locally-based roofing contractor in Valley Center, CA. The site showcases residential and commercial roofing services, including repairs, re-roofing, inspections, and storm damage repair. Built with modern web technologies to provide a responsive, user-friendly experience for potential customers seeking trusted roofing solutions.",
+    "github": "https://github.com/sriswasthik/Sandoval-Roofing",
+    "image": "https://craftmypdf.com/wp-content/uploads/2025/06/invoice-type-1.png"
   }
+
 ]
+
