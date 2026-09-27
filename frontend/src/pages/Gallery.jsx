@@ -309,6 +309,7 @@ import novus from "../assets/Novus24.jpg";
 import GFGWorkshop from "../assets/GFGWorkshop.jpeg";
 import IITH from "../assets/IITH.jpeg";
 import HackFusion from "../assets/HackFusion.jpeg";
+import MFUGH from "../assets/MFUGH.jpg";
 
 function Gallery() {
   const [selected, setSelected] = useState(null);
@@ -320,6 +321,7 @@ function Gallery() {
     { src: GFGWorkshop, title: "GeeksForGeeks Workshop" },
     { src: novus, title: "NOVUS'24 Hackathon @MRDU" },
     { src: HackFusion, title: "HackFusion @JNTUH" },
+    { src: MFUGH, title: "MFUGH - Microsoft" },
   ];
 
   const breakpointColumnsObj = {
