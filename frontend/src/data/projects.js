@@ -2,12 +2,11 @@
 // Descriptions stick to what each project's own description or README states.
 export const projects = [
   {
-    title: "Sandoval Roofing",
-    category: "Client website",
+    title: "FinTrack",
+    category: "Personal finance",
     description:
-      "Website for a roofing contractor in Valley Center, California. It lists their residential and commercial services, from repairs and re-roofing to inspections and storm damage, and works on phones and desktops.",
-    // TODO: tech list and links. The GitHub repo (sriswasthik/Sandoval-Roofing) is not public.
-    tech: [],
+      "Full-stack personal finance ledger for Indian bank statements with multi-format imports, duplicate detection, privacy-first AI categorization, automated financial insights, and secure multi-user data handling.",
+    tech: ["React 19", "TypeScript", "Express 5", "Prisma", "Claude API"],
     links: [],
   },
   // {
