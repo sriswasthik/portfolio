@@ -14,7 +14,7 @@ function Intro() {
       <div className="intro__identity">
         <img
           className="intro__avatar"
-          src={profile.avatar}
+          src={"/assets/Profile.png"}
           alt=""
           width="56"
           height="56"
