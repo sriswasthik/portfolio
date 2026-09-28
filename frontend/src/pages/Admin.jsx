@@ -79,202 +79,117 @@ function Admin() {
     };
 
     return (
-        <section style={styles.container}>
-            <div className="container">
+        <>
+            <title>Admin — Sri Swasthik</title>
+            <meta name="robots" content="noindex" />
 
-                <h2 style={styles.heading}>Admin Panel</h2>
+            <header className="page-header page-header--row">
+                <h1 className="page-title">Admin Panel</h1>
 
+                <button
+                    type="button"
+                    className="button button--quiet"
+                    onClick={() => {
+                        localStorage.removeItem("isAdmin");
+                        window.location.href = "/login";
+                    }}
+                >
+                    Logout
+                </button>
+            </header>
+
+            <div className="page-body">
                 {/* ✅ FORM */}
-                <form onSubmit={handleSubmit} style={styles.form}>
+                <form onSubmit={handleSubmit} className="form">
+                    <div className="field">
+                        <label htmlFor="project-title" className="field__label">Project title</label>
+                        <input
+                            id="project-title"
+                            type="text"
+                            value={form.title}
+                            onChange={(e) =>
+                                setForm({ ...form, title: e.target.value })
+                            }
+                            className="field__input"
+                        />
+                    </div>
 
-                    <input
-                        type="text"
-                        placeholder="Project Title"
-                        value={form.title}
-                        onChange={(e) =>
-                            setForm({ ...form, title: e.target.value })
-                        }
-                        style={styles.input}
-                    />
+                    <div className="field">
+                        <label htmlFor="project-github" className="field__label">GitHub link</label>
+                        <input
+                            id="project-github"
+                            type="text"
+                            value={form.github}
+                            onChange={(e) =>
+                                setForm({ ...form, github: e.target.value })
+                            }
+                            className="field__input"
+                        />
+                    </div>
 
-                    <input
-                        type="text"
-                        placeholder="GitHub Link"
-                        value={form.github}
-                        onChange={(e) =>
-                            setForm({ ...form, github: e.target.value })
-                        }
-                        style={styles.input}
-                    />
+                    <div className="field">
+                        <label htmlFor="project-description" className="field__label">Description</label>
+                        <textarea
+                            id="project-description"
+                            value={form.description}
+                            onChange={(e) =>
+                                setForm({ ...form, description: e.target.value })
+                            }
+                            className="field__input"
+                        />
+                    </div>
 
-                    <textarea
-                        placeholder="Description"
-                        value={form.description}
-                        onChange={(e) =>
-                            setForm({ ...form, description: e.target.value })
-                        }
-                        style={styles.textarea}
-                    />
-                    <input
-                        placeholder="Image URL"
-                        value={form.image || ""}
-                        onChange={(e) =>
-                            setForm({ ...form, image: e.target.value })
-                        }
-                    />
+                    <div className="field">
+                        <label htmlFor="project-image" className="field__label">Image URL</label>
+                        <input
+                            id="project-image"
+                            type="text"
+                            value={form.image || ""}
+                            onChange={(e) =>
+                                setForm({ ...form, image: e.target.value })
+                            }
+                            className="field__input"
+                        />
+                    </div>
 
-
-
-                    <button type="submit" style={styles.button}>
+                    <button type="submit" className="button" disabled={loading}>
                         {loading ? "Adding..." : "Add Project"}
                     </button>
                 </form>
 
                 {/* ✅ PROJECT LIST */}
-                <div style={styles.grid}>
+                <ul className="plain-list">
                     {projects.map((p) => (
-                        <div key={p.id} style={styles.card}>
+                        <li key={p.id} className="entry">
+                            <div className="entry__header">
+                                <h2 className="entry__title">{p.title}</h2>
+                                <button
+                                    type="button"
+                                    className="button button--quiet"
+                                    onClick={() => deleteProject(p.id)}
+                                >
+                                    Delete<span className="visually-hidden"> {p.title}</span>
+                                </button>
+                            </div>
 
-                            <h3>{p.title}</h3>
-                            <p style={styles.desc}>{p.description}</p>
+                            <p className="entry__body">{p.description}</p>
 
-                            <div style={styles.actions}>
+                            <p className="entry__links">
                                 <a
                                     href={p.github}
                                     target="_blank"
                                     rel="noreferrer"
-                                    style={styles.link}
+                                    className="link"
                                 >
-                                    View
+                                    View<span className="visually-hidden"> {p.title} on GitHub</span>
                                 </a>
-
-                                <button
-                                    style={styles.deleteBtn}
-                                    onClick={() => deleteProject(p.id)}
-                                >
-                                    Delete
-                                </button>
-                            </div>
-
-                        </div>
+                            </p>
+                        </li>
                     ))}
-                </div>
-                <button
-                    style={styles.logout}
-                    onClick={() => {
-                        localStorage.removeItem("isAdmin");
-                        window.location.href = "/login";
-                    }}
-                    onMouseEnter={(e) => {
-                        e.target.style.background = "#ff4d4d";
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.background = "transparent";
-                    }}
-                >
-                    Logout
-                </button>
-
+                </ul>
             </div>
-        </section>
+        </>
     );
 }
-
-const styles = {
-    container: {
-        paddingTop: "80px",
-    },
-
-    heading: {
-        fontSize: "32px",
-        marginBottom: "30px",
-    },
-
-    form: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "15px",
-        maxWidth: "500px",
-        marginBottom: "40px",
-    },
-
-    input: {
-        padding: "12px",
-        borderRadius: "8px",
-        border: "1px solid #222",
-        background: "#111",
-        color: "#fff",
-        outline: "none",
-    },
-
-    textarea: {
-        padding: "12px",
-        borderRadius: "8px",
-        border: "1px solid #222",
-        background: "#111",
-        color: "#fff",
-        minHeight: "120px",
-        outline: "none",
-    },
-
-    button: {
-        padding: "12px",
-        background: "#00adb5",
-        border: "none",
-        borderRadius: "8px",
-        cursor: "pointer",
-    },
-
-    grid: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-        gap: "20px",
-    },
-
-    card: {
-        padding: "20px",
-        border: "1px solid #222",
-        borderRadius: "12px",
-        background: "#111",
-    },
-
-    desc: {
-        color: "#aaa",
-        marginTop: "10px",
-    },
-
-    actions: {
-        marginTop: "15px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-    },
-
-    link: {
-        color: "#00adb5",
-    },
-
-    deleteBtn: {
-        background: "#ff4d4d",
-        border: "none",
-        padding: "6px 10px",
-        borderRadius: "6px",
-        cursor: "pointer",
-        color: "#fff",
-    },
-
-    logout: {
-        position: "absolute",
-        top: "70px",
-        right: "40px",
-        padding: "8px 16px",
-        border: "1px solid #ff4d4d",
-        borderRadius: "20px",
-        color: "#ff4d4d",
-        background: "transparent",
-        cursor: "pointer",
-        transition: "0.3s",
-    }
-};
 
 export default Admin;
