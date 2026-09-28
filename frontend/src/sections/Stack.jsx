@@ -3,7 +3,7 @@ import { stack } from "../data/stack";
 
 function Stack() {
   return (
-    <Section id="stack" title="Stack">
+    <Section id="stack" title="stack">
       <dl className="meta-list">
         {stack.map((row) => (
           <div key={row.group} className="meta-list__row">

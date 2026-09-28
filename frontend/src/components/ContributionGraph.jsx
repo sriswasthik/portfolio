@@ -86,7 +86,7 @@ function ContributionGraph({ user, profileUrl }) {
         >
           <div className="graph__months">
             {labels.map((label) => (
-              <span key={label.index} style={{ gridColumn: label.index + 1 }}>
+              <span key={label.index} style={{ gridColumn: `${label.index + 1} / span 3` }}>
                 {label.text}
               </span>
             ))}

@@ -1,9 +1,16 @@
 import { useState } from "react";
 import Section from "../components/Section";
-import ExternalLink from "../components/ExternalLink";
+import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MailIcon, MediumIcon, XIcon } from "../components/Icons";
 import { profile, socials } from "../data/profile";
 
 const EMPTY_FORM = { name: "", email: "", message: "" };
+
+const SOCIAL_ROWS = [
+    { ...socials.github, Icon: GitHubIcon },
+    { ...socials.linkedin, Icon: LinkedInIcon },
+    { ...socials.medium, Icon: MediumIcon },
+    { ...socials.x, Icon: XIcon },
+];
 
 function Contact() {
     const [form, setForm] = useState(EMPTY_FORM);
@@ -41,24 +48,34 @@ function Contact() {
     };
 
     return (
-        <Section id="contact" title="Contact">
-            <p className="muted">
-                Email is the best way to reach me:{" "}
-                <a className="link" href={`mailto:${profile.email}`}>
-                    {profile.email}
-                </a>
-                . I'm based in {profile.location}.
-            </p>
-
-            <ul className="link-row block-gap">
-                {Object.values(socials).map((social) => (
-                    <li key={social.href}>
-                        <ExternalLink href={social.href}>{social.label}</ExternalLink>
+        <Section id="contact" title="socials">
+            <ul className="plain-list social-list">
+                <li>
+                    <a href={`mailto:${profile.email}`}>
+                        <MailIcon />
+                        <span className="social-list__label">Email</span>
+                        <span className="social-list__handle">{profile.email}</span>
+                    </a>
+                </li>
+                {SOCIAL_ROWS.map(({ label, handle, href, ...row }) => {
+                    const Icon = row.Icon;
+                    return (
+                    <li key={href}>
+                        <a href={href} target="_blank" rel="noopener noreferrer">
+                            <Icon />
+                            <span className="social-list__label">{label}</span>
+                            <span className="social-list__handle">
+                                {handle}
+                                <ArrowUpRightIcon />
+                            </span>
+                            <span className="visually-hidden"> (opens in a new tab)</span>
+                        </a>
                     </li>
-                ))}
+                    );
+                })}
             </ul>
 
-            <details className="disclosure block-gap">
+            <details className="disclosure">
                 <summary>Or send a message here</summary>
 
                 <form onSubmit={handleSubmit} className="form disclosure__body">
@@ -104,7 +121,7 @@ function Contact() {
 
                     <button
                         type="submit"
-                        className="button"
+                        className="button button--primary"
                         disabled={status === "sending"}
                     >
                         {status === "sending" ? "Sending..." : "Send Message"}

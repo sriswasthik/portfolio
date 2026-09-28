@@ -86,7 +86,7 @@ function Gallery() {
         onClose={() => setSelected(null)}
         onClick={(e) => e.target === e.currentTarget && close()}
       >
-        <button type="button" className="lightbox__close" onClick={close}>
+        <button type="button" className="button lightbox__close" onClick={close}>
           Close
         </button>
 

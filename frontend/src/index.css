@@ -732,6 +732,18 @@ main.container {
   margin-top: var(--space-6);
 }
 
+.entry-list--tight > li + li {
+  margin-top: var(--space-3);
+}
+
+.entry__title--sm {
+  font-size: var(--text-sm);
+}
+
+.section__link {
+  font-size: var(--text-xs);
+}
+
 .entry__top {
   display: flex;
   flex-wrap: wrap;
@@ -1154,6 +1166,54 @@ textarea.field__input {
   gap: var(--space-2) var(--space-5);
   padding-block: var(--space-5) var(--space-6);
   border-top: 1px solid var(--color-border);
+}
+
+/* ==========================================================================
+   Splash — greeting shown on a full load of the home page
+   ========================================================================== */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: var(--color-bg);
+  cursor: pointer;
+  transition:
+    transform 700ms cubic-bezier(0.76, 0, 0.24, 1),
+    border-radius 700ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.splash--leaving {
+  transform: translateY(-100%);
+  border-bottom-left-radius: 50% 12%;
+  border-bottom-right-radius: 50% 12%;
+}
+
+.splash__word {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text);
+  font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  animation: splash-word 150ms ease-out;
+}
+
+.splash__word::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+@keyframes splash-word {
+  from {
+    opacity: 0.4;
+  }
 }
 
 /* ==========================================================================

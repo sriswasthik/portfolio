@@ -1,6 +1,6 @@
 import Intro from "../sections/Intro";
 import Projects from "../sections/Projects";
-import Experience from "../sections/Experience";
+import { Experience, Education } from "../sections/Experience";
 import Stack from "../sections/Stack";
 import Activity from "../sections/Activity";
 import Contact from "../sections/Contact";
@@ -15,6 +15,7 @@ function Home() {
       <Intro />
       <Projects />
       <Experience />
+      <Education />
       <Stack />
       <Activity />
       <Contact />

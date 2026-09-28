@@ -2,6 +2,8 @@ import ExternalLink from "../components/ExternalLink";
 import ContributionGraph from "../components/ContributionGraph";
 import { LinkedInIcon, MailIcon } from "../components/Icons";
 import { profile, socials } from "../data/profile";
+// 168px crop of src/assets/Profile.png (shown at 56px; 3x for sharp screens).
+import avatar from "../assets/avatar.jpg";
 
 function Intro() {
   return (
@@ -14,7 +16,7 @@ function Intro() {
       <div className="intro__identity">
         <img
           className="intro__avatar"
-          src={"/assets/Profile.png"}
+          src={avatar}
           alt=""
           width="56"
           height="56"
