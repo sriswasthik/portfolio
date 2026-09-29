@@ -18,11 +18,20 @@ app.use(express.json({ limit: "1mb" }));
 app.use(clerkMiddleware());
 
 // ✅ Database
-if (process.env.MONGODB_URI) {
+// Retries until it connects, so fixing Atlas access (e.g. the IP allow
+// list) takes effect without restarting the server.
+function connectDb() {
   mongoose
     .connect(process.env.MONGODB_URI)
     .then(() => console.log("MongoDB connected"))
-    .catch((err) => console.error("MongoDB connection failed:", err));
+    .catch((err) => {
+      console.error("MongoDB connection failed, retrying in 30s:", err.message);
+      setTimeout(connectDb, 30_000);
+    });
+}
+
+if (process.env.MONGODB_URI) {
+  connectDb();
 } else {
   console.warn("MONGODB_URI not set: content edits are disabled.");
 }
