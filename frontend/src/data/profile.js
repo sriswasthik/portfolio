@@ -3,7 +3,7 @@ export const profile = {
   role: "Frontend Developer / UI/UX Designer",
   location: "Hyderabad, Telangana",
   email: "padmasriswasthik@gmail.com",
-  resume: "/resume.pdf",
+  resume: "/Sri_Swasthik_Resume.pdf",
   githubUser: "sriswasthik",
 };
 
