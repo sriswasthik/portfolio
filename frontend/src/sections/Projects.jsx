@@ -2,7 +2,7 @@ import { useState } from "react";
 import Section from "../components/Section";
 import ExternalLink from "../components/ExternalLink";
 import { GridIcon, ListIcon } from "../components/Icons";
-import { projects } from "../data/projects";
+import { useContent } from "../content/context";
 
 const VIEW_KEY = "projects-view";
 
@@ -40,6 +40,7 @@ function ViewToggle({ view, onChange }) {
 }
 
 function Projects() {
+  const projects = useContent("projects");
   const [view, setView] = useState(readView);
 
   const changeView = (next) => {
@@ -59,7 +60,9 @@ function Projects() {
     >
       <ul className={view === "grid" ? "plain-list project-grid" : "plain-list entry-list"}>
         {projects.map((project) => {
-          const primary = project.links[0];
+          const links = project.links ?? [];
+          const tech = project.tech ?? [];
+          const primary = links[0];
           return (
             <li key={project.title}>
               <div className="entry__top">
@@ -74,12 +77,14 @@ function Projects() {
                       project.title
                     )}
                   </h3>
-                  <span className="entry__kind">· {project.category}</span>
+                  {project.category && (
+                    <span className="entry__kind">· {project.category}</span>
+                  )}
                 </div>
 
-                {project.links.length > 0 && (
+                {links.length > 0 && (
                   <ul className="plain-list entry__links">
-                    {project.links.map((link) => (
+                    {links.map((link) => (
                       <li key={link.href}>
                         <ExternalLink href={link.href} variant="quiet">
                           <span className="visually-hidden">{project.title} on </span>
@@ -93,10 +98,10 @@ function Projects() {
 
               <p className="entry__body">{project.description}</p>
 
-              {project.tech.length > 0 && (
+              {tech.length > 0 && (
                 <ul className="dot-list entry__tech" aria-label="Built with">
-                  {project.tech.map((tech) => (
-                    <li key={tech}>{tech}</li>
+                  {tech.map((item) => (
+                    <li key={item}>{item}</li>
                   ))}
                 </ul>
               )}

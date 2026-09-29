@@ -9,8 +9,9 @@ import Gallery from "./pages/Gallery";
 import useHashScroll from "./hooks/useHashScroll";
 import { prefersReducedMotion } from "./lib/scroll";
 
-// Admin routes are split out of the main bundle. Gallery is small (~2 KB)
-// and loads eagerly so it never flashes a loading placeholder.
+// Admin routes (and Clerk with them) are split out of the main bundle.
+// Gallery is small (~2 KB) and loads eagerly so it never flashes a loading placeholder.
+const AdminLayout = lazy(() => import("./admin/AdminLayout"));
 const Admin = lazy(() => import("./pages/Admin"));
 const Login = lazy(() => import("./pages/Login"));
 
@@ -46,8 +47,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/login" element={<Login />} />
+            <Route element={<AdminLayout />}>
+              <Route path="/admin" element={<Admin />} />
+              {/* Clerk's sign-in steps live under /login/... */}
+              <Route path="/login/*" element={<Login />} />
+            </Route>
           </Routes>
         </Suspense>
       </main>

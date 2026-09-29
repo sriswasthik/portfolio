@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import Section from "../components/Section";
-import { events } from "../data/activity";
+import { useContent } from "../content/context";
 
 function Activity() {
+  const events = useContent("activity");
+
   return (
     <Section
       id="activity"

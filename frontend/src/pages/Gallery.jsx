@@ -1,32 +1,11 @@
 import { useRef, useState } from "react";
-
-// Full-size photos (1600px wide) for the lightbox; 720px thumbnails for the grid.
-import uiuxst from "../assets/UIUXst.jpg";
-import novus from "../assets/Novus24.jpg";
-import GFGWorkshop from "../assets/GFGWorkshop.jpeg";
-import IITH from "../assets/IITH.jpeg";
-import HackFusion from "../assets/HackFusion.jpeg";
-import MFUGH from "../assets/MFUGH.jpg";
-import uiuxstThumb from "../assets/thumbs/UIUXst.jpg";
-import novusThumb from "../assets/thumbs/Novus24.jpg";
-import GFGWorkshopThumb from "../assets/thumbs/GFGWorkshop.jpg";
-import IITHThumb from "../assets/thumbs/IITH.jpg";
-import HackFusionThumb from "../assets/thumbs/HackFusion.jpg";
-import MFUGHThumb from "../assets/thumbs/MFUGH.jpg";
-
-const IMAGES = [
-  { src: IITH, thumb: IITHThumb, title: "Codeathon @IITH" },
-  { src: uiuxst, thumb: uiuxstThumb, title: "UI/UX Workshop @StudentTribe" },
-  { src: GFGWorkshop, thumb: GFGWorkshopThumb, title: "GeeksForGeeks Workshop" },
-  { src: novus, thumb: novusThumb, title: "NOVUS'24 Hackathon @MRDU" },
-  { src: HackFusion, thumb: HackFusionThumb, title: "HackFusion @JNTUH" },
-  { src: MFUGH, thumb: MFUGHThumb, title: "MFUGH - Microsoft" },
-];
+import { useContent } from "../content/context";
 
 // The first row is visible on load, so it isn't lazy-loaded.
 const EAGER_COUNT = 2;
 
 function Gallery() {
+  const images = useContent("gallery");
   const dialogRef = useRef(null);
   const [selected, setSelected] = useState(null);
 
@@ -51,8 +30,8 @@ function Gallery() {
 
       <div className="page-body">
         <ul className="plain-list gallery-grid">
-          {IMAGES.map((img, i) => (
-            <li key={img.title}>
+          {images.map((img, i) => (
+            <li key={img.src}>
               <figure className="gallery-item">
                 <button
                   type="button"
@@ -61,9 +40,11 @@ function Gallery() {
                   aria-label={`View larger: ${img.title}`}
                 >
                   <img
-                    src={img.thumb}
-                    srcSet={`${img.thumb} 720w, ${img.src} 1600w`}
-                    sizes="(min-width: 36rem) 21rem, calc(100vw - 2.5rem)"
+                    src={img.thumb || img.src}
+                    {...(img.thumb && {
+                      srcSet: `${img.thumb} 720w, ${img.src} 1600w`,
+                      sizes: "(min-width: 36rem) 21rem, calc(100vw - 2.5rem)",
+                    })}
                     alt=""
                     className="gallery-item__image"
                     loading={i < EAGER_COUNT ? "eager" : "lazy"}

@@ -1,7 +1,9 @@
 import Section from "../components/Section";
-import { stack } from "../data/stack";
+import { useContent } from "../content/context";
 
 function Stack() {
+  const stack = useContent("skills");
+
   return (
     <Section id="stack" title="stack">
       <dl className="meta-list">
